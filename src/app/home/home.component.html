@@ -1,0 +1,22 @@
+<GridLayout class="page">
+        <TabView id="tabViewContainer" tabBackgroundColor="#2f435e">
+                <StackLayout *tabItem="{title: 'Encrypt'}">
+                    <StackLayout>
+                            <Label style="margin-top: 30%;" text="Encrypt" textWrap="true" class="text-center heading"></Label>
+                            <Label text="Choose algorithm" textWrap="true" class="text-center sub-heading"></Label>
+                            
+                            <ListPicker style="height: 20%; margin-top: -2%;" [items]="listPickerAlgos" [(ngModel)]="selectedListPickerIndex"></ListPicker>
+                            <Button text="OK" class="button" (tap)="continueAfterChoosingAlgorithmEncrypt()"></Button>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout *tabItem="{title: 'Decrypt'}">
+                        <StackLayout>
+                                <Label style="margin-top: 30%;" text="Decrypt" textWrap="true" class="text-center heading"></Label>
+                                <Label text="Choose algorithm" textWrap="true" class="text-center sub-heading"></Label>
+                                <ListPicker style="height: 20%; margin-top: -2%;" [items]="listPickerAlgos" [(ngModel)]="selectedListPickerIndex"></ListPicker>
+                                <Button text="OK" class="button" (tap)="continueAfterChoosingAlgorithmDecrypt()"></Button>
+                        </StackLayout>
+                </StackLayout>
+        </TabView>
+        
+</GridLayout>
