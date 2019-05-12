@@ -14,24 +14,44 @@ import { RouterExtensions } from "nativescript-angular/router";
     templateUrl: "./home.component.html"
 })
 export class HomeComponent implements OnInit {
-    listPickerAlgos: Array<string> = ["AES", "AES", "AES", "s"];
     selectedListPickerIndex: number = 1;
     key: string = ""; 
     plainText: string = "";
+    avaiableAlgorithms = {
+        'Camellia 256 Bit Key CBC Mode': 'camellia-256-cbc', 
+        'AES 256 Bit Key CBC Mode': 'aes-256-cbc', 
+        'DES 56 Bit Key CBC Mode': 'des-cbc',
+        'Blowfish 448 Bit Key CBC Mode': 'bf-cbc', 
+        'Triple DES 192 Bit Key': 'des3',
+        'IDEA 128 BIt Key CBC Mode': 'idea-cbc'
+    }
 
-    ngOnInit(): void {}
+
+    listPickerAlgos: Array<string>;
+
+    ngOnInit(): void {
+        this.listPickerAlgos = Object.keys(this.avaiableAlgorithms);
+    }
 
     constructor(private routerExtensions: RouterExtensions) {}
 
     continueAfterChoosingAlgorithmEncrypt(): void{
-        if(this.listPickerAlgos[this.selectedListPickerIndex] == "AES"){
-            this.routerExtensions.navigate(["encrypt-message"]);
-        }  
+            this.routerExtensions.navigate(["encrypt-message"],
+            {
+                replaceUrl: false,
+                queryParams: {
+                    algorithm: this.avaiableAlgorithms[this.listPickerAlgos[this.selectedListPickerIndex]]
+                }
+            });
     }
 
     continueAfterChoosingAlgorithmDecrypt(): void{
-        if(this.listPickerAlgos[this.selectedListPickerIndex] == "AES"){
-            this.routerExtensions.navigate(["/decrypt-message"]);
-        }  
+        this.routerExtensions.navigate(["decrypt-message"],
+            {
+                replaceUrl: false,
+                queryParams: {
+                    algorithm: this.avaiableAlgorithms[this.listPickerAlgos[this.selectedListPickerIndex]]
+                }
+            });
     }
 }

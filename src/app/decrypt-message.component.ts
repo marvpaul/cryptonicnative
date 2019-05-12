@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Observable } from "tns-core-modules/data/observable";
 import { RouterExtensions } from "nativescript-angular/router";
+import { ActivatedRoute } from "@angular/router";
 
 import * as dialogs from "tns-core-modules/ui/dialogs";
 declare const IQKeyboardManager: any;
@@ -22,13 +23,16 @@ export class DecryptMessageComponent   extends Observable implements OnInit {
     private iqKeyboard: IQKeyboardManager;
     key: string = ""; 
     encryptedText: string = "";
+    choosenAlgorithm: string = "";
 
 
-    constructor(private routerExtensions: RouterExtensions) {
+    constructor(private routerExtensions: RouterExtensions, private route: ActivatedRoute) {
         super(); 
         // Use the component constructor to inject providers.
         this.iqKeyboard = IQKeyboardManager.sharedManager();
         IQKeyboardManager.keyboardDistanceFromTextField = 20;
+        const query = this.route.snapshot.queryParams;
+        this.choosenAlgorithm = query['algorithm']; 
     }
 
     decryptMessage(): void {
@@ -43,13 +47,13 @@ export class DecryptMessageComponent   extends Observable implements OnInit {
             try{
                 this.giveSuccessVibrationFeedback();
                 // using --> crypto-js installed via npm
-                var CryptoJS = require("crypto-js"); 
-                var decrypted = CryptoJS.AES.decrypt(this.encryptedText, this.key);
-                originalText = decrypted.toString(CryptoJS.enc.Utf8);
+                
             } catch{ 
                 originalText = "pseudo-cipher-text";
             }
-                
+            require("nativescript-nodeify");
+            var crypto = require("crypto-module");
+            originalText = crypto.encryptMessage(this.encryptedText, this.key, this.choosenAlgorithm); 
             
             if(originalText == ""){
                 this.giveAlert("Decryption failed. Please check your key and the encrypted text again!");

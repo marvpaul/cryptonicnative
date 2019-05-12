@@ -1,0 +1,12 @@
+{
+  "name": "crypto-module",
+  "version": "1.1.2",
+  "description": "This module offers a an interface between some cipher methods of nodes built-in crypto library and nativescript",
+  "main": "index.js",
+  "scripts": {
+    "test": " mkdir test && cp test.js test/ && cd test && npm install ../ && node test.js && cd .. && rm -rf test && exit 0"
+  },
+  "author": "Marvin Krüger",
+  "license": "ISC",
+  "dependencies": {}
+}
