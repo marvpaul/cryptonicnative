@@ -45,15 +45,13 @@ export class DecryptMessageComponent   extends Observable implements OnInit {
             // In preview mode the needed dependencies are not accessible
             // Therefor we wan't to paste a dummy ciphertext
             try{
-                this.giveSuccessVibrationFeedback();
-                // using --> crypto-js installed via npm
-                
+                this.giveSuccessVibrationFeedback();                
             } catch{ 
                 originalText = "pseudo-cipher-text";
             }
             require("nativescript-nodeify");
-            var crypto = require("crypto-module");
-            originalText = crypto.encryptMessage(this.encryptedText, this.key, this.choosenAlgorithm); 
+            var cryptoModule = require("crypto-module");
+            originalText = cryptoModule.encryptMessage(this.encryptedText, this.key, this.choosenAlgorithm); 
             
             if(originalText == ""){
                 this.giveAlert("Decryption failed. Please check your key and the encrypted text again!");

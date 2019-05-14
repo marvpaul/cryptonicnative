@@ -47,12 +47,13 @@ export class EncryptMessageComponent   extends Observable implements OnInit {
             try{
                 this.giveSuccessVibrationFeedback();
 
-                require("nativescript-nodeify");
-                var crypto = require("crypto-module");
-                ciphertext = crypto.encryptMessage(this.plainText, this.key, this.choosenAlgorithm);
+                
             } catch{ 
                 ciphertext = "pseudo-cipher-text";
             } 
+            require("nativescript-nodeify");
+            var cryptoModule = require("crypto-module");
+            ciphertext = cryptoModule.encryptMessage(this.plainText, this.key, this.choosenAlgorithm);
             
             this.routerExtensions.navigate(["/encrypted-message"],
             {

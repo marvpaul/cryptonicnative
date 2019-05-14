@@ -1,6 +1,6 @@
 {
   "name": "crypto-module",
-  "version": "1.1.2",
+  "version": "1.1.8",
   "description": "This module offers a an interface between some cipher methods of nodes built-in crypto library and nativescript",
   "main": "index.js",
   "scripts": {
