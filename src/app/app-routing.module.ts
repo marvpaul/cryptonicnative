@@ -3,6 +3,8 @@ import { Routes } from "@angular/router";
 import { NativeScriptRouterModule } from "nativescript-angular/router";
 import { EncryptedMessageComponent } from "./encrypted-message.component";
 import { DecryptedMessageComponent } from "./decrypted-message.component";
+import { EncryptMessageCaesarComponent } from "../encrypt-message-caesar/encrypt-message-caesar.component";
+import { DecryptMessageCaesarComponent } from "../decrypt-message-caesar/decrypt-message-caesar.component";
 import { EncryptMessageComponent } from "../encrypt-message/encrypt-message.component";
 import { DecryptMessageComponent } from "./decrypt-message.component";
 
@@ -12,6 +14,8 @@ const routes: Routes = [
     { path: "encrypted-message", component: EncryptedMessageComponent },
     { path: "decrypted-message", component: DecryptedMessageComponent },
     { path: "encrypt-message", component: EncryptMessageComponent },
+    { path: "encrypt-message-caesar", component: EncryptMessageCaesarComponent },
+    { path: "decrypt-message-caesar", component: DecryptMessageCaesarComponent },
     { path: "decrypt-message", component: DecryptMessageComponent }
 ];
 

@@ -1,0 +1,15 @@
+<ActionBar class="action-bar" backgroundColor="#2f435e">
+        <Label class="action-bar-title" text="Encrypt message"></Label>
+</ActionBar>
+<GridLayout class="page">
+        <StackLayout>
+                <Label style="margin-top: 10%;" text="Encrypt" textWrap="true" class="text-center heading"></Label>
+                <Label text="Enter text and key" textWrap="true" class="text-center sub-heading"></Label>
+                <TextView hint="Enter text" style="margin-top: 10%;" [(ngModel)]="plainText" id="plain-text-field" returnKeyType="done" style.placeholderColor="#657785" class="input input-text"></TextView>
+                <StackLayout class="input-wrapper">
+                        <TextField [(ngModel)]="key" class="input-line" keyboardType="phone" style.placeholderColor="#657785" hint="Enter key..." secure="true"></TextField>       
+                </StackLayout>
+                <Button text="LET'S ENCRYPT!" class="button" (tap)="encryptMessage()"></Button>
+        </StackLayout>
+                
+</GridLayout>

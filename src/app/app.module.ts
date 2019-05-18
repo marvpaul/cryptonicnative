@@ -9,6 +9,9 @@ import { NativeScriptFormsModule } from "nativescript-angular/forms";
 import { EncryptedMessageComponent } from "./encrypted-message.component";
 import { DecryptedMessageComponent } from "./decrypted-message.component";
 import { EncryptMessageComponent } from "../encrypt-message/encrypt-message.component";
+import { EncryptMessageCaesarComponent } from "../encrypt-message-caesar/encrypt-message-caesar.component";
+
+import { DecryptMessageCaesarComponent } from "../decrypt-message-caesar/decrypt-message-caesar.component";
 import { DecryptMessageComponent } from "./decrypt-message.component";
 
 
@@ -28,7 +31,9 @@ import { DecryptMessageComponent } from "./decrypt-message.component";
         EncryptedMessageComponent,
         EncryptMessageComponent,
         DecryptMessageComponent,
-        DecryptedMessageComponent
+        DecryptedMessageComponent,
+        EncryptMessageCaesarComponent,
+        DecryptMessageCaesarComponent
     ],
     schemas: [
         NO_ERRORS_SCHEMA

@@ -1,9 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { Observable } from "tns-core-modules/data/observable";
 import { RouterExtensions } from "nativescript-angular/router";
-import { ActivatedRoute } from "@angular/router";
-
 import * as dialogs from "tns-core-modules/ui/dialogs";
+import { ActivatedRoute } from "@angular/router";
 declare const IQKeyboardManager: any;
 declare const UIKeyboardAppearance: any;
 
@@ -15,25 +14,23 @@ declare const UIKeyboardAppearance: any;
 *************************************************************/
 
 @Component({
-    selector: "DecryptMessage",
+    selector: "DecryptMessageCaesar",
     moduleId: module.id,
-    templateUrl: "./decrypt-message.component.html"
+    templateUrl: "./decrypt-message-caesar.component.html"
 })
-export class DecryptMessageComponent   extends Observable implements OnInit {
+export class DecryptMessageCaesarComponent   extends Observable implements OnInit {
     private iqKeyboard: IQKeyboardManager;
-    key: string = ""; 
+    key: any = ""; 
     encryptedText: string = "";
     choosenAlgorithm: string = "";
 
-
-    constructor(private routerExtensions: RouterExtensions, private route: ActivatedRoute) {
+    constructor(private routerExtensions: RouterExtensions) {
         super(); 
         // Use the component constructor to inject providers.
         this.iqKeyboard = IQKeyboardManager.sharedManager();
         IQKeyboardManager.keyboardDistanceFromTextField = 20;
-        const query = this.route.snapshot.queryParams;
-        this.choosenAlgorithm = query['algorithm']; 
     }
+
 
     decryptMessage(): void {
         var originalText: string = "";
@@ -41,6 +38,8 @@ export class DecryptMessageComponent   extends Observable implements OnInit {
             this.giveAlert("Please provide a text to decrypt!");
         } else if(this.key == ""){
             this.giveAlert("Please provide a key!");
+        } else if(isNaN(this.key)){
+            this.giveAlert("For caesar cipher only digits are allowed as a key");
         } else{
             // In preview mode the needed dependencies are not accessible
             // Therefor we wan't to paste a dummy ciphertext
@@ -51,7 +50,7 @@ export class DecryptMessageComponent   extends Observable implements OnInit {
             }
             require("nativescript-nodeify");
             var cryptoModule = require("crypto-module");
-            originalText = cryptoModule.decryptMessage(this.encryptedText, this.key, this.choosenAlgorithm); 
+            originalText = cryptoModule.decryptMessage(this.encryptedText, this.key, 'caesar'); 
             
             if(originalText == ""){
                 this.giveAlert("Decryption failed. Please check your key and the encrypted text again!");

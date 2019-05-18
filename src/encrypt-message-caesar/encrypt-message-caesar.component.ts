@@ -1,9 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { Observable } from "tns-core-modules/data/observable";
 import { RouterExtensions } from "nativescript-angular/router";
-import { ActivatedRoute } from "@angular/router";
-
 import * as dialogs from "tns-core-modules/ui/dialogs";
+import { ActivatedRoute } from "@angular/router";
 declare const IQKeyboardManager: any;
 declare const UIKeyboardAppearance: any;
 
@@ -15,55 +14,51 @@ declare const UIKeyboardAppearance: any;
 *************************************************************/
 
 @Component({
-    selector: "DecryptMessage",
+    selector: "EncryptMessageCaesar",
     moduleId: module.id,
-    templateUrl: "./decrypt-message.component.html"
+    templateUrl: "./encrypt-message-caesar.component.html"
 })
-export class DecryptMessageComponent   extends Observable implements OnInit {
+export class EncryptMessageCaesarComponent   extends Observable implements OnInit {
     private iqKeyboard: IQKeyboardManager;
-    key: string = ""; 
-    encryptedText: string = "";
-    choosenAlgorithm: string = "";
+    key: any = ""; 
+    plainText: string = "";
 
 
-    constructor(private routerExtensions: RouterExtensions, private route: ActivatedRoute) {
+    constructor(private routerExtensions: RouterExtensions) {
         super(); 
         // Use the component constructor to inject providers.
         this.iqKeyboard = IQKeyboardManager.sharedManager();
         IQKeyboardManager.keyboardDistanceFromTextField = 20;
-        const query = this.route.snapshot.queryParams;
-        this.choosenAlgorithm = query['algorithm']; 
     }
 
-    decryptMessage(): void {
-        var originalText: string = "";
-        if(this.encryptedText == ""){
-            this.giveAlert("Please provide a text to decrypt!");
+    encryptMessage(): void {
+        var ciphertext: string = "";
+
+        if(this.plainText == ""){
+            this.giveAlert("Please provide a text to encrypt!");
         } else if(this.key == ""){
             this.giveAlert("Please provide a key!");
+        } else if(isNaN(this.key)){
+            this.giveAlert("For caesar cipher only digits are allowed as a key");
         } else{
             // In preview mode the needed dependencies are not accessible
             // Therefor we wan't to paste a dummy ciphertext
             try{
-                this.giveSuccessVibrationFeedback();                
+                this.giveSuccessVibrationFeedback();
             } catch{ 
-                originalText = "pseudo-cipher-text";
-            }
+                ciphertext = "pseudo-cipher-text";
+            } 
             require("nativescript-nodeify");
             var cryptoModule = require("crypto-module");
-            originalText = cryptoModule.decryptMessage(this.encryptedText, this.key, this.choosenAlgorithm); 
+            ciphertext = cryptoModule.encryptMessage(this.plainText, parseInt(this.key), 'caesar');
             
-            if(originalText == ""){
-                this.giveAlert("Decryption failed. Please check your key and the encrypted text again!");
-            } else{
-                this.routerExtensions.navigate(["/decrypted-message"],
-                {
-                    replaceUrl: false,
-                    queryParams: {
-                        decryptedText: originalText
-                    }
-                });
-            }
+            this.routerExtensions.navigate(["/encrypted-message"],
+            {
+                replaceUrl: false,
+                queryParams: {
+                    encryptedText: ciphertext
+                }
+            });
         }
     }
 
