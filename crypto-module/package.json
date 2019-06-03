@@ -1,6 +1,6 @@
 {
   "name": "crypto-module",
-  "version": "1.3.1",
+  "version": "1.3.7",
   "description": "This module offers a an interface between some cipher methods of nodes built-in crypto library and nativescript as well as offering the same interface for some self implemented ciphers, e.g. caesar cipher.",
   "main": "index.js",
   "scripts": {
@@ -9,7 +9,9 @@
   "author": "Marvin Krüger",
   "license": "ISC",
   "dependencies": {
+    "cipherjs": "*",
+    "egoroof-blowfish": "^2.2.0",
     "nativescript-nodeify": "*",
-    "cipherjs": "*"
+    "scryptsy": "^2.0.0"
   }
 }

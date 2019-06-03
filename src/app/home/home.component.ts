@@ -32,11 +32,12 @@ export class HomeComponent implements OnInit {
         'AES 256 Bit Key CTR Mode': 'aes-256-ctr',
         'AES 256 Bit Key OFB Mode': 'aes-256-ofb',
         'DES 56 Bit Key CBC Mode': 'des-cbc',
-        'DES 56 Bit Key': 'des', 
         'DES 56 Bit Key CFB Mode': 'des-cfb',
         'DES 56 Bit Key OFB Mode': 'des-ofb',
         'Caesar Cipher': 'caesar',
-        'Vigenere Cipher': 'vigenere'
+        'Vigenere Cipher': 'vigenere',
+        'BLOWFISH-ECB': 'BLOWFISH-ECB',
+        'BLOWFISH-CBC': 'BLOWFISH-CBC'
         //'Blowfish 448 Bit Key CBC Mode': 'bf-cbc', 
         //'Triple DES 192 Bit Key': 'des3',
         //'IDEA 128 BIt Key CBC Mode': 'idea-cbc'
