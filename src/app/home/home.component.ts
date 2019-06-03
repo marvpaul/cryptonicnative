@@ -36,11 +36,16 @@ export class HomeComponent implements OnInit {
         'DES 56 Bit Key OFB Mode': 'des-ofb',
         'Caesar Cipher': 'caesar',
         'Vigenere Cipher': 'vigenere',
-        'BLOWFISH-ECB': 'BLOWFISH-ECB',
-        'BLOWFISH-CBC': 'BLOWFISH-CBC'
-        //'Blowfish 448 Bit Key CBC Mode': 'bf-cbc', 
-        //'Triple DES 192 Bit Key': 'des3',
-        //'IDEA 128 BIt Key CBC Mode': 'idea-cbc'
+        'Blowfish 32 Bit Key ECB Mode': 'BLOWFISH-32-ECB',
+        'Blowfish 32 Bit Key CBC Mode': 'BLOWFISH-32-CBC', 
+        'Blowfish 64 Bit Key ECB Mode': 'BLOWFISH-64-ECB',
+        'Blowfish 64 Bit Key CBC Mode': 'BLOWFISH-64-CBC', 
+        'Blowfish 128 Bit Key ECB Mode': 'BLOWFISH-128-ECB',
+        'Blowfish 128 Bit Key CBC Mode': 'BLOWFISH-128-CBC', 
+        'Blowfish 256 Bit Key ECB Mode': 'BLOWFISH-256-ECB',
+        'Blowfish 256 Bit Key CBC Mode': 'BLOWFISH-256-CBC', 
+        'Blowfish 448 Bit Key ECB Mode': 'BLOWFISH-448-ECB',
+        'Blowfish 448 Bit Key CBC Mode': 'BLOWFISH-448-CBC', 
     }
 
     listPickerAlgos: Array<string>;
