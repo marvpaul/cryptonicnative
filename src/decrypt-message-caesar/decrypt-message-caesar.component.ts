@@ -59,6 +59,7 @@ export class DecryptMessageCaesarComponent   extends Observable implements OnIni
                 {
                     replaceUrl: false,
                     queryParams: {
+                        //decryptedText: cryptoModule.genereatePublicPrivateKeyPair('sth', 256)
                         decryptedText: originalText
                     }
                 });
