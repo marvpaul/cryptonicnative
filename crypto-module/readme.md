@@ -1,6 +1,4 @@
-This module offers a an interface between some cipher methods of nodes built-in crypto library and nativescript. To use this module, please make sure to io use `require("nativescript-nodeify");` before using any method of the crypto-module package which are using nodes crypto methods.
-
-This module offers the same interface for some simple other ciphers, e.g. caesar cipher.
+This module offers an interface between several cryptographic block cipher libraries, as well as an interface to an RSA library. You can use it with nativescript.
 
 # See it in action 
 ```
