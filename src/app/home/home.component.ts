@@ -17,71 +17,66 @@ export class HomeComponent implements OnInit {
     selectedListPickerIndex: number = 1;
     key: string = ""; 
     plainText: string = "";
-    avaiableAlgorithms = {
-        //'Camellia 256 Bit Key CBC Mode': 'camellia-256-cbc', 
-        'AES 128 Bit Key CBC Mode': 'aes-128-cbc', 
-        'AES 128 Bit Key CFB Mode': 'aes-128-cfb',
-        'AES 128 Bit Key CTR Mode': 'aes-128-ctr',
-        'AES 128 Bit Key OFB Mode': 'aes-128-ofb',
-        'AES 192 Bit Key CBC Mode': 'aes-192-cbc', 
-        'AES 192 Bit Key CFB Mode': 'aes-192-cfb',
-        'AES 192 Bit Key CTR Mode': 'aes-192-ctr',
-        'AES 192 Bit Key OFB Mode': 'aes-192-ofb',
-        'AES 256 Bit Key CBC Mode': 'aes-256-cbc', 
-        'AES 256 Bit Key CFB Mode': 'aes-256-cfb',
-        'AES 256 Bit Key CTR Mode': 'aes-256-ctr',
-        'AES 256 Bit Key OFB Mode': 'aes-256-ofb',
-        'DES 56 Bit Key CBC Mode': 'des-cbc',
-        'DES 56 Bit Key CFB Mode': 'des-cfb',
-        'DES 56 Bit Key OFB Mode': 'des-ofb',
-        'Caesar Cipher': 'caesar',
-        'Vigenere Cipher': 'vigenere',
-        'Blowfish 32 Bit Key ECB Mode': 'BLOWFISH-32-ECB',
-        'Blowfish 32 Bit Key CBC Mode': 'BLOWFISH-32-CBC', 
-        'Blowfish 64 Bit Key ECB Mode': 'BLOWFISH-64-ECB',
-        'Blowfish 64 Bit Key CBC Mode': 'BLOWFISH-64-CBC', 
-        'Blowfish 128 Bit Key ECB Mode': 'BLOWFISH-128-ECB',
-        'Blowfish 128 Bit Key CBC Mode': 'BLOWFISH-128-CBC', 
-        'Blowfish 256 Bit Key ECB Mode': 'BLOWFISH-256-ECB',
-        'Blowfish 256 Bit Key CBC Mode': 'BLOWFISH-256-CBC', 
-        'Blowfish 448 Bit Key ECB Mode': 'BLOWFISH-448-ECB',
-        'Blowfish 448 Bit Key CBC Mode': 'BLOWFISH-448-CBC', 
-    }
-
-    listPickerAlgos: Array<string>;
+    availableBaseAlgorithms = [
+        "Caesar",
+        "Vigenere",
+        "AES",
+        "DES",
+        "Blowfish"
+    ];
 
     ngOnInit(): void {
-        this.listPickerAlgos = Object.keys(this.avaiableAlgorithms);
     }
 
     constructor(private routerExtensions: RouterExtensions) {}
 
     continueAfterChoosingAlgorithmEncrypt(): void{
-        if(this.avaiableAlgorithms[this.listPickerAlgos[this.selectedListPickerIndex]] === 'caesar'){
+        console.log(this.availableBaseAlgorithms[this.selectedListPickerIndex]);
+        if(this.availableBaseAlgorithms[this.selectedListPickerIndex] === 'Caesar'){
             this.routerExtensions.navigate(["encrypt-message-caesar"]);
-        } else{
+        } else if(this.availableBaseAlgorithms[this.selectedListPickerIndex] === 'Vigenere') {
+
             this.routerExtensions.navigate(["encrypt-message"],
-            {
-                replaceUrl: false,
-                queryParams: {
-                    algorithm: this.avaiableAlgorithms[this.listPickerAlgos[this.selectedListPickerIndex]]
-                }
-            });
+                {
+                    replaceUrl: false,
+                    queryParams: {
+                        algorithm: this.availableBaseAlgorithms[this.selectedListPickerIndex],
+                    }
+                });
+        } else {
+            this.routerExtensions.navigate(["choose-algorithm"],
+                {
+                    replaceUrl: false,
+                    queryParams: {
+                        baseAlgorithm: this.availableBaseAlgorithms[this.selectedListPickerIndex],
+                        encryption: true
+                    }
+                });
         }
             
     }
 
     continueAfterChoosingAlgorithmDecrypt(): void{
-        if(this.avaiableAlgorithms[this.listPickerAlgos[this.selectedListPickerIndex]] === 'caesar'){
+        if(this.availableBaseAlgorithms[this.selectedListPickerIndex] === 'Caesar'){
             this.routerExtensions.navigate(["decrypt-message-caesar"]);
-        } else{
+        } else if(this.availableBaseAlgorithms[this.selectedListPickerIndex] === 'Vigenere') {
+
             this.routerExtensions.navigate(["decrypt-message"],
-            {
-                replaceUrl: false,
-                queryParams: {
-                    algorithm: this.avaiableAlgorithms[this.listPickerAlgos[this.selectedListPickerIndex]]
-                }
-            });
+                {
+                    replaceUrl: false,
+                    queryParams: {
+                        algorithm: this.availableBaseAlgorithms[this.selectedListPickerIndex],
+                    }
+                });
+        } else {
+            this.routerExtensions.navigate(["choose-algorithm"],
+                {
+                    replaceUrl: false,
+                    queryParams: {
+                        baseAlgorithm: this.availableBaseAlgorithms[this.selectedListPickerIndex],
+                        encryption: false
+                    }
+                });
         }
     }
 }

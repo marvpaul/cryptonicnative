@@ -1,0 +1,22 @@
+<ActionBar class="action-bar" backgroundColor="#2f435e">
+        <Label class="action-bar-title" [text]="title"></Label>
+</ActionBar>
+<GridLayout class="page">
+        <StackLayout *ngIf="encryption === 'true'">
+                <StackLayout>
+                        <Label style="margin-top: 30%;" text="Encrypt" textWrap="true" class="text-center heading"></Label>
+                        <Label text="Choose algorithm" textWrap="true" class="text-center sub-heading"></Label>
+
+                        <ListPicker style="height: 20%; margin-top: -2%;" [items]="listPickerAlgos" [(ngModel)]="selectedListPickerIndex"></ListPicker>
+                        <Button text="OK" class="button" (tap)="continueAfterChoosingAlgorithmEncrypt()"></Button>
+                </StackLayout>
+        </StackLayout>
+        <StackLayout *ngIf="encryption === 'false'">
+                <StackLayout>
+                        <Label style="margin-top: 30%;" text="Decrypt" textWrap="true" class="text-center heading"></Label>
+                        <Label text="Choose algorithm" textWrap="true" class="text-center sub-heading"></Label>
+                        <ListPicker style="height: 20%; margin-top: -2%;" [items]="listPickerAlgos" [(ngModel)]="selectedListPickerIndex"></ListPicker>
+                        <Button text="OK" class="button" (tap)="continueAfterChoosingAlgorithmDecrypt()"></Button>
+                </StackLayout>
+        </StackLayout>
+</GridLayout>

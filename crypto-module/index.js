@@ -306,17 +306,24 @@ exports.decryptMessage = function(encryptedText, password, algorithm) {
   }
 }
 
+exports.generateKeyFromPEM = function(PEMString){
+  return r.KEYUTIL.getKeyFromPlainPrivatePKCS8PEM(PEMString);
+}
+
 exports.genereatePublicPrivateKeyPair = function(password, bytes) {
 
   var privateKey = cryptico.generateRSAKey(password, bytes*8);
   var publicKey =cryptico.publicKeyString(privateKey);
-  
+
+  /*
+    
   
   var PlainText = "Matt, I need you to help me with my Starcraft strategy.";
   
   var EncryptionResult = cryptico.encrypt(PlainText, publicKey);
   var DecryptionResult = cryptico.decrypt(EncryptionResult.cipher, privateKey);
   console.log(DecryptionResult.plaintext);
+  */
   
   var key = new r.RSAKey();
   var {n, e, d, p, q, dmp1, dmq1, coeff} = privateKey; 

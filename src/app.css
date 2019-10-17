@@ -60,7 +60,7 @@ components that have the btn class name.
 
 .sub-heading{
     color: #657785;
-    font-size: 20pt;
+    font-sizse: 20pt;
 }
 
 .button{
@@ -71,6 +71,15 @@ components that have the btn class name.
     height: 8%;
     width: 70%; 
     border-radius: 50px; 
+}
+.button-sm {
+    margin-top: 3%;
+    font-size: 20pt;
+    color: white;
+    background-color: #00b7c2;
+    height: 8%;
+    width: 50%;
+    border-radius: 50px;
 }
 
 .far {
