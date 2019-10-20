@@ -66,7 +66,7 @@ export class EncryptMessageComponent   extends Observable implements OnInit {
             informationPageContent = this.informations.des;
         } else if(this.choosenAlgorithm.includes("BLOWFISH")){
             informationPageContent = this.informations.blowfish;
-        } else if(this.choosenAlgorithm.includes("Vigenere")){
+        } else if(this.choosenAlgorithm.includes("vigenere")){
             informationPageContent = this.informations.vigenere;
         }
         this.routerExtensions.navigate(["/information-page"],

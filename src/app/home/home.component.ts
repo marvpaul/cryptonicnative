@@ -15,8 +15,6 @@ import { RouterExtensions } from "nativescript-angular/router";
 })
 export class HomeComponent implements OnInit {
     selectedListPickerIndex: number = 1;
-    key: string = ""; 
-    plainText: string = "";
     availableBaseAlgorithms = [
         "Caesar",
         "Vigenere",
@@ -31,7 +29,6 @@ export class HomeComponent implements OnInit {
     constructor(private routerExtensions: RouterExtensions) {}
 
     continueAfterChoosingAlgorithmEncrypt(): void{
-        console.log(this.availableBaseAlgorithms[this.selectedListPickerIndex]);
         if(this.availableBaseAlgorithms[this.selectedListPickerIndex] === 'Caesar'){
             this.routerExtensions.navigate(["encrypt-message-caesar"]);
         } else if(this.availableBaseAlgorithms[this.selectedListPickerIndex] === 'Vigenere') {
@@ -40,7 +37,7 @@ export class HomeComponent implements OnInit {
                 {
                     replaceUrl: false,
                     queryParams: {
-                        algorithm: this.availableBaseAlgorithms[this.selectedListPickerIndex],
+                        algorithm: 'vigenere',
                     }
                 });
         } else {
@@ -65,7 +62,7 @@ export class HomeComponent implements OnInit {
                 {
                     replaceUrl: false,
                     queryParams: {
-                        algorithm: this.availableBaseAlgorithms[this.selectedListPickerIndex],
+                        algorithm: 'vigenere',
                     }
                 });
         } else {

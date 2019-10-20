@@ -52,7 +52,6 @@ export class ChooseAlgorithmComponent extends Observable implements OnInit {
 
     listPickerAlgos: Array<string>;
     encryption: any;
-    title: String = "";
     baseAlgorithm: any = "";
 
 
@@ -62,11 +61,6 @@ export class ChooseAlgorithmComponent extends Observable implements OnInit {
         this.listPickerAlgos = Object.keys(this.avaiableAlgorithms[query.baseAlgorithm]);
         this.baseAlgorithm = query.baseAlgorithm;
         this.encryption = query.encryption;
-        if(this.encryption === 'true'){
-            this.title = "Encrypt message";
-        } else {
-            this.title = "Decrypt message";
-        }
     }
 
     continueAfterChoosingAlgorithmEncrypt(): void{

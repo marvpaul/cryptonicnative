@@ -1,5 +1,5 @@
 <ActionBar class="action-bar" backgroundColor="#2f435e">
-        <Label class="action-bar-title" [text]="title"></Label>
+        <Label class="action-bar-title" [text]="encryption === 'true' ? 'Encrypt message': 'Decrypt message'"></Label>
 </ActionBar>
 <GridLayout class="page">
         <StackLayout *ngIf="encryption === 'true'">
