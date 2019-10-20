@@ -7,10 +7,10 @@
                 <Label text="Enter text and key" textWrap="true" class="text-center sub-heading"></Label>
                 <TextView hint="Enter text" style="margin-top: 10%;" [(ngModel)]="plainText" id="plain-text-field" returnKeyType="done" style.placeholderColor="#657785" class="input input-text"></TextView>
                 <StackLayout class="input-wrapper">
-                        <TextField [(ngModel)]="key" class="input-line" keyboardType="phone" style.placeholderColor="#657785" hint="Enter key..." secure="true"></TextField>       
+                        <TextField [(ngModel)]="key" class="input-line" style="margin-bottom: 5%;" keyboardType="phone" style.placeholderColor="#657785" hint="Enter key..." secure="true"></TextField>
                 </StackLayout>
                 <Button text="LET'S ENCRYPT!" class="button" (tap)="encryptMessage()"></Button>
-                <Button text="More infos" class="button button-sm" (tap)="showInformation()"></Button>
+                <Button text="?" class="button button-sm" (tap)="showInformation()"></Button>
         </StackLayout>
                 
 </GridLayout>

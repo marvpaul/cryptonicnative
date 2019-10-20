@@ -53,12 +53,14 @@ export class ChooseAlgorithmComponent extends Observable implements OnInit {
     listPickerAlgos: Array<string>;
     encryption: any;
     title: String = "";
+    baseAlgorithm: any = "";
 
 
     constructor(private routerExtensions: RouterExtensions, private route: ActivatedRoute) {
         super();
         const query = this.route.snapshot.queryParams;
         this.listPickerAlgos = Object.keys(this.avaiableAlgorithms[query.baseAlgorithm]);
+        this.baseAlgorithm = query.baseAlgorithm;
         this.encryption = query.encryption;
         if(this.encryption === 'true'){
             this.title = "Encrypt message";
@@ -68,32 +70,24 @@ export class ChooseAlgorithmComponent extends Observable implements OnInit {
     }
 
     continueAfterChoosingAlgorithmEncrypt(): void{
-        if(this.avaiableAlgorithms[this.listPickerAlgos[this.selectedListPickerIndex]] === 'caesar'){
-            this.routerExtensions.navigate(["encrypt-message-caesar"]);
-        } else{
-            this.routerExtensions.navigate(["encrypt-message"],
-            {
-                replaceUrl: false,
-                queryParams: {
-                    algorithm: this.avaiableAlgorithms[this.listPickerAlgos[this.selectedListPickerIndex]]
-                }
-            });
-        }
+        this.routerExtensions.navigate(["encrypt-message"],
+        {
+            replaceUrl: false,
+            queryParams: {
+                algorithm: this.avaiableAlgorithms[this.baseAlgorithm][this.listPickerAlgos[this.selectedListPickerIndex]]
+            }
+        });
             
     }
 
     continueAfterChoosingAlgorithmDecrypt(): void{
-        if(this.avaiableAlgorithms[this.listPickerAlgos[this.selectedListPickerIndex]] === 'caesar'){
-            this.routerExtensions.navigate(["decrypt-message-caesar"]);
-        } else{
-            this.routerExtensions.navigate(["decrypt-message"],
+        this.routerExtensions.navigate(["decrypt-message"],
             {
                 replaceUrl: false,
                 queryParams: {
-                    algorithm: this.avaiableAlgorithms[this.listPickerAlgos[this.selectedListPickerIndex]]
+                    algorithm: this.avaiableAlgorithms[this.baseAlgorithm][this.listPickerAlgos[this.selectedListPickerIndex]]
                 }
             });
-        }
     }
 
     ngOnInit(): void {

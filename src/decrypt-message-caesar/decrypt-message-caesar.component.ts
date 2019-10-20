@@ -31,6 +31,18 @@ export class DecryptMessageCaesarComponent   extends Observable implements OnIni
         IQKeyboardManager.keyboardDistanceFromTextField = 20;
     }
 
+    showInformation(): void {
+        this.routerExtensions.navigate(["/information-page"],
+            {
+                replaceUrl: false,
+                queryParams: {
+                    algorithm: 'Caesar',
+                    content: 'In cryptography, a Caesar cipher, also known as Caesar\'s cipher, the shift cipher, Caesar\'s code or Caesar shift, is one of the simplest and most widely known encryption techniques. It is a type of substitution cipher in which each letter in the plaintext is replaced by a letter some fixed number of positions down the alphabet. For example, with a right shift of 3, A would be replaced by D, B would become E, and so on. The method is named after Julius Caesar, who used it in his private correspondence. (Source: https://en.wikipedia.org/wiki/Caesar_cipher).',
+                    usedLibrary: 'https://gist.github.com/EvanHahn/2587465'
+                }
+            });
+    }
+
 
     decryptMessage(): void {
         var originalText: string = "";

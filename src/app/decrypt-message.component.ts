@@ -24,6 +24,28 @@ export class DecryptMessageComponent   extends Observable implements OnInit {
     key: string = ""; 
     encryptedText: string = "";
     choosenAlgorithm: string = "";
+    informations = {
+        vigenere: {
+            algorithm: 'Vigenere',
+            content: 'Vigenere Cipher is a method of encrypting alphabetic text. It uses a simple form of polyalphabetic substitution. A polyalphabetic cipher is any cipher based on substitution, using multiple substitution alphabets .The encryption of the original text is done using the Vigenère square or Vigenère table. (Source: https://www.geeksforgeeks.org/vigenere-cipher/)',
+            usedLibrary: 'https://github.com/sheharyarn/cipherjs'
+        },
+        aes: {
+            algorithm: 'AES',
+            content: 'The Advanced Encryption Standard, or AES, is a symmetric block cipher chosen by the U.S. government to protect classified information and is implemented in software and hardware throughout the world to encrypt sensitive data. (Source: https://searchsecurity.techtarget.com/definition/Advanced-Encryption-Standard).\\n',
+            usedLibrary: 'We used the build in crypto library of node for AES encryption with a random initialization vector and a 8 byte random salt. For key derivation we\'ve used https://www.npmjs.com/package/scryptsy with 1024 internal iterations.'
+        },
+        des: {
+            algorithm: 'DES',
+            content: 'The Data Encryption Standard (DES) is a symmetric-key algorithm for the encryption of electronic data. Although its short key length of 56 bits, criticized from the beginning, makes it too insecure for most current applications, it was highly influential in the advancement of modern cryptography. (Source: https://en.wikipedia.org/wiki/Data_Encryption_Standard)',
+            usedLibrary: 'We used the build in crypto library of node for DES encryption with a random initialization vector and a 8 byte random salt. For key derivation we\'ve used https://www.npmjs.com/package/scryptsy with 1024 internal iterations.'
+        },
+        blowfish: {
+            algorithm: 'Blowfish',
+            content: 'Blowfish is a symmetric block cipher that can be used as a drop-in replacement for DES or IDEA. It takes a variable-length key, from 32 bits to 448 bits, making it ideal for both domestic and exportable use. Blowfish was designed in 1993 by Bruce Schneier as a fast, free alternative to existing encryption algorithms. Since then it has been analyzed considerably, and it is slowly gaining acceptance as a strong encryption algorithm. Blowfish is unpatented and license-free, and is available free for all uses. (Source: https://www.schneier.com/academic/blowfish/ )',
+            usedLibrary: 'We used this implementation: https://github.com/egoroof/blowfish . For encryption a random initialization vector, pad with zero (null) characters (null padding), and a 8 byte random salt is used. For key derivation we\'ve used https://www.npmjs.com/package/scryptsy with 1024 internal iterations.'
+        }
+    };
 
 
     constructor(private routerExtensions: RouterExtensions, private route: ActivatedRoute) {
@@ -33,6 +55,27 @@ export class DecryptMessageComponent   extends Observable implements OnInit {
         IQKeyboardManager.keyboardDistanceFromTextField = 20;
         const query = this.route.snapshot.queryParams;
         this.choosenAlgorithm = query['algorithm']; 
+    }
+
+
+
+    showInformation(): void {
+        console.log(this.choosenAlgorithm);
+        let informationPageContent =  {};
+        if(this.choosenAlgorithm.includes("aes")){
+            informationPageContent = this.informations.aes;
+        } else if(this.choosenAlgorithm.includes("des")){
+            informationPageContent = this.informations.des;
+        } else if(this.choosenAlgorithm.includes("BLOWFISH")){
+            informationPageContent = this.informations.blowfish;
+        } else if(this.choosenAlgorithm.includes("Vigenere")){
+            informationPageContent = this.informations.vigenere;
+        }
+        this.routerExtensions.navigate(["/information-page"],
+            {
+                replaceUrl: false,
+                queryParams: informationPageContent
+            });
     }
 
     decryptMessage(): void {
